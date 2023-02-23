@@ -5,9 +5,9 @@
  */
 
 import app from '../app';
-import * as http from 'http';
 import * as debugModule from 'debug';
-var debug = debugModule.debug('quick-start-express-typescript:server');
+var debug = debugModule.debug('api:server');
+import * as http from 'http';
 
 /**
  * Get port from environment and store in Express.
@@ -35,16 +35,16 @@ server.on('listening', onListening);
  */
 
 function normalizePort(val: string): number | string | boolean {
-  const nport = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
-  if (isNaN(nport)) {
+  if (isNaN(port)) {
     // named pipe
     return val;
   }
 
-  if (nport >= 0) {
+  if (port >= 0) {
     // port number
-    return nport;
+    return port;
   }
 
   return false;
@@ -54,7 +54,7 @@ function normalizePort(val: string): number | string | boolean {
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error: any): void {
+function onError(error: NodeJS.ErrnoException): void {
   if (error.syscall !== 'listen') {
     throw error;
   }
@@ -66,9 +66,11 @@ function onError(error: any): void {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
       process.exit(1);
+      break;
     case 'EADDRINUSE':
       console.error(bind + ' is already in use');
       process.exit(1);
+      break;
     default:
       throw error;
   }
@@ -79,20 +81,12 @@ function onError(error: any): void {
  */
 
 function onListening(): void {
-  function bind() {
+  function bind(): string {
     const addr = server.address();
     if (addr === null) {
       return '';
     }
-
-    if (typeof addr === 'string') {
-      return 'pipe ' + addr;
-    }
-
-    if ('port' in addr) {
-      return 'port ' + addr.port;
-    }
+    return typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   }
-
   debug('Listening on ' + bind());
 }
