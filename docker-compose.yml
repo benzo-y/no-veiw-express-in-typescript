@@ -15,4 +15,17 @@ services:
     volumes:
       - ./:/app
     working_dir: /app
-    # command: npm run dev
+    networks:
+      backend:
+        ipv4_address: 172.28.1.10
+
+  # app:
+  #   image: node
+
+networks:
+  backend:
+    driver: bridge
+    name: app_network
+    ipam:
+      config:
+        - subnet: 172.28.1.0/24

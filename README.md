@@ -28,3 +28,8 @@
 ```bash
 npm install sequelize mysql2
 ```
+
+マイグレーションのために以下をインストールする
+```bash
+npm install sequelize-cli umzug
+```
