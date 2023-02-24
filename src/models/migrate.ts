@@ -14,7 +14,7 @@ const umzug = new Umzug({
       [
         filepath,
         fs
-          .readFileSync(path.join(__dirname, './templates/sampleMigration.ts'))
+          .readFileSync(path.join(__dirname, 'templates/sampleMigration.ts'))
           .toString(),
       ],
     ],
