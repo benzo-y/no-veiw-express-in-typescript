@@ -2,6 +2,8 @@
 
 バックエンドのAPIサーバの環境構築を開発する際の学習リポジトリです。
 
+## Express＋TypeScriptのインストール
+
 1. expressをインストールする
     ```bash
     npm install -g  express-generator
@@ -20,3 +22,9 @@
     ```bash
     npm install --save-dev ts-node nodemon
     ```
+
+## sequelizeのインストール
+
+```bash
+npm install sequelize mysql2
+```

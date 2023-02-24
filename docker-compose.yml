@@ -3,6 +3,13 @@ services:
   api:
     image: node
     tty: true
+    environment:
+      - MYSQL_SERVER=db
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_DATABASE=${DB_NAME}
+      - TZ=${TZ}
+      - CHOKIDAR_USEPOLLING=true
     ports:
       - '3000:3000'
     volumes:
