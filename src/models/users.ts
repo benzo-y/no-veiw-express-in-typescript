@@ -4,6 +4,7 @@ const TABLE_NAME = 'users';
 
 class Users extends Model {
   public id!: number;
+  public username!: string;
   public email!: string;
   public created_at!: Date;
   public updated_at!: Date;
@@ -16,6 +17,11 @@ class Users extends Model {
           autoIncrement: true,
           allowNull: false,
           primaryKey: true,
+        },
+        username: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          defaultValue: '',
         },
         email: {
           type: DataTypes.STRING,
