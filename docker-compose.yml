@@ -4,7 +4,7 @@ services:
     image: node
     tty: true
     environment:
-      - MYSQL_SERVER=db
+      - MYSQL_SERVER=${DB_SERVER}
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASS}
       - MYSQL_DATABASE=${DB_NAME}
@@ -15,12 +15,10 @@ services:
     volumes:
       - ./:/app
     working_dir: /app
+    command: npm run dev
     networks:
       backend:
         ipv4_address: 172.28.1.10
-
-  # app:
-  #   image: node
 
 networks:
   backend:
