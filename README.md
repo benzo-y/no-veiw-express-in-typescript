@@ -33,3 +33,9 @@ npm install sequelize mysql2
 ```bash
 npm install sequelize-cli umzug
 ```
+
+マイグレーションコマンド：`npm run migarte`または`npx ts-node ./src/models/migrate.ts`
+- 雛形作成（例）：`npm run migrate create -- --name setup.ts`
+- マイグレーション：`npm run migrate up`
+- マイグレーション：`npm run migrate down`
+- ヘルプ：`npm run migrate -- --help`
