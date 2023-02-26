@@ -12,6 +12,14 @@ router.get('/', (req: Request, res: Response) => {
   })();
 });
 
+router.get('/:id', (req: Request, res: Response) => {
+  (async () => {
+    const user = await db.users.findByPk(req.params.id);
+    res.header('Content-Type', 'application/json; charset=utf-8');
+    res.status(200).send(user);
+  })();
+});
+
 router.post('/', (req: Request, res: Response) => {
   (async () => {
     const newUser = new db.users();
