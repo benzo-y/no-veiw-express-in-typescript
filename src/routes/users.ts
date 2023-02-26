@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import db from '../models';
 import express from 'express';
+import { Utils } from './utils';
 
 export const router = express.Router();
 
@@ -22,16 +23,9 @@ router.get('/:id', (req: Request, res: Response) => {
 
 router.post('/', (req: Request, res: Response) => {
   (async () => {
-    const newUser = new db.users();
-    const tmpDate = new Date();
-
-    newUser.username = req.body.username;
-    newUser.email = req.body.email;
-    newUser.created_at = tmpDate;
-    newUser.updated_at = tmpDate;
-
     try {
-      await db.users.create(newUser.dataValues);
+      const dataValues = Utils.generateDataValues(db.users, req);
+      await db.users.create(dataValues);
       res.send('ok');
     } catch (error: unknown) {
       res.status(400).send('ng');
@@ -41,16 +35,9 @@ router.post('/', (req: Request, res: Response) => {
 
 router.post('/:id', (req: Request, res: Response) => {
   (async () => {
-    const newUser = new db.users();
-    const tmpDate = new Date();
-
-    newUser.username = req.body.username;
-    newUser.email = req.body.email;
-    newUser.created_at = tmpDate;
-    newUser.updated_at = tmpDate;
-
     try {
-      await db.users.update(newUser.dataValues, {
+      const dataValues = Utils.generateDataValues(db.users, req);
+      await db.users.update(dataValues, {
         where: { id: req.params.id },
       });
       res.send('ok');
