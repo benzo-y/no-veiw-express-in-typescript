@@ -59,3 +59,16 @@ router.post('/:id', (req: Request, res: Response) => {
     }
   })();
 });
+
+router.delete('/:id', (req: Request, res: Response) => {
+  (async () => {
+    try {
+      await db.users.destroy({
+        where: { id: req.params.id },
+      });
+      res.send('ok');
+    } catch (error: unknown) {
+      res.status(400).send('ng');
+    }
+  })();
+});
