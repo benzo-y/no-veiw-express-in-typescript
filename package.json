@@ -7,7 +7,7 @@
     "dev": "nodemon",
     "build": "tsc",
     "ts-node": "ts-node",
-    "migrate": "ts-node ./src/models/migrate.ts"
+    "migrate": "ts-node ./src/models/bin/migrate.ts"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { Umzug, SequelizeStorage } from 'umzug';
-import db from './index';
+import db from '../index';
 
 const umzug = new Umzug({
-  migrations: { glob: path.join(__dirname, 'migrations/*.{ts,js}') },
+  migrations: { glob: path.join(__dirname, '../migrations/*.{ts,js}') },
   context: db.sequelize,
   storage: new SequelizeStorage({ sequelize: db.sequelize }),
   logger: console,
@@ -14,7 +14,7 @@ const umzug = new Umzug({
       [
         filepath,
         fs
-          .readFileSync(path.join(__dirname, 'templates/sampleMigration.ts'))
+          .readFileSync(path.join(__dirname, '../templates/sampleMigration.ts'))
           .toString(),
       ],
     ],
