@@ -9,7 +9,7 @@ const umzug = new Umzug({
   storage: new SequelizeStorage({ sequelize: db.sequelize }),
   logger: console,
   create: {
-    folder: path.join(__dirname, 'migrations'),
+    folder: path.join(__dirname, '../migrations'),
     template: (filepath) => [
       [
         filepath,
